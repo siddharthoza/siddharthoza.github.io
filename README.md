@@ -1,2 +1,0 @@
-# siddharthoza.github.io
-Website
