@@ -1,92 +1,90 @@
-jQuery(document).ready(function( $ ) {
+(function ($) {
+ "use strict";
 
-  // Smooth scroll for the menu and links with .scrollto classes
-  $('.smothscroll').on('click', function(e) {
-    e.preventDefault();
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      if (target.length) {
 
-        $('html, body').animate({
-          scrollTop: target.offset().top - 62
-        }, 1500, 'easeInOutExpo');
-      }
-    }
-  });
 
-  $('.carousel').carousel({
-    interval: 3500
-  });
 
-  // JavaScript Chart
-  var doughnutData = [{
-      value: 70,
-      color: "#1abc9c"
-    },
-    {
-      value: 30,
-      color: "#ecf0f1"
-    }
-  ];
-  var myDoughnut = new Chart(document.getElementById("javascript").getContext("2d")).Doughnut(doughnutData);
+/*
+ ISOTOPE ACTIVE
+================================ */
 
-  // Bootstrap Chart
-  var doughnutData = [{
-    value: 90,
-    color: "#1abc9c"
-  },
-  {
-    value: 10,
-    color: "#ecf0f1"
-  }
-  ];
-  var myDoughnut = new Chart(document.getElementById("bootstrap").getContext("2d")).Doughnut(doughnutData);
+	// isotope menu
+	var ProjMli = $('.portfolio-menu li');
+	var ProjGrid = $('.portfolio-grid');
+	ProjMli.on('click', function(){
+	ProjMli.removeClass("active");
+	  $(this).addClass("active");
+		var selector = $(this).attr('data-filter');
+		ProjGrid.isotope({
+			filter: selector,
+			animationOptions: {
+				duration: 750,
+				easing: 'linear',
+				queue: false,
+			}
+		});
+	});
 
-  // WordPress Chart
-  var doughnutData = [{
-    value: 65,
-    color: "#1abc9c"
-  },
-  {
-    value: 35,
-    color: "#ecf0f1"
-  }
-  ];
-  var myDoughnut = new Chart(document.getElementById("wordpress").getContext("2d")).Doughnut(doughnutData);
+/*
+ fancybox Popup
+================================ */
+	$('.fancybox').fancybox({
+		openEffect: 'fade',
+		closeEffect: 'fade',
+        padding : 0,
 
-  // HTML Chart
-  var doughnutData = [{
-    value: 80,
-    color: "#1abc9c"
-  },
-  {
-    value: 20,
-    color: "#ecf0f1"
-  }
-  ];
-  var myDoughnut = new Chart(document.getElementById("html").getContext("2d")).Doughnut(doughnutData);
+		closeBtn: true,
 
-  // Photoshop Chart
-  var doughnutData = [{
-    value: 70,
-    color: "#1abc9c"
-  },
-  {
-    value: 30,
-    color: "#ecf0f1"
-  }
-  ];
-  var myDoughnut = new Chart(document.getElementById("photoshop").getContext("2d")).Doughnut(doughnutData);
+		helpers: {
+			title: {
+				type: 'inside'
+			},
+			buttons: {}
+		},
+		helpers: {
+			overlay: {
+			  locked: false
+			}
+		}
+    });
+	/* youtube video popup
+	--------------------*/
+	$(".various").fancybox({
+		'padding' : 0,
+		maxWidth    : 800,
+		maxHeight   : 600,
+		fitToView   : false,
+		width       : '70%',
+		height      : '70%',
+		autoSize    : false,
+		closeClick  : false,
+		openEffect  : 'fade',
+		closeEffect : 'fade'
+	});
 
-  // Illustrator Chart
-  var doughnutData = [{
-    value: 50,
-    color: "#1abc9c"
-  },
-  {
-    value: 50,
-    color: "#ecf0f1"
-  }
-  ];
-  var myDoughnut = new Chart(document.getElementById("illustrator").getContext("2d")).Doughnut(doughnutData);
+
+
+
+
+
+})(jQuery);
+
+/*
+	LODING BAR
+================================ */
+
+jQuery(window).on('load', function(){
+
+	//Preloader
+	var preeLoad = $('#loading');
+	preeLoad.fadeOut(1000);
+
+	// isotope grid
+	var IsoGriddoload = $('.portfolio-grid');
+	IsoGriddoload.isotope({
+		itemSelector: '.grid-item',
+		masonryHorizontal: {
+			rowHeight: 100
+		}
+	});
 });
